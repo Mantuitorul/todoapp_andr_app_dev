@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">be.mihaildragosvelicu.todoproject</string>
+    <string name="neocoreshorizons_logo">neocoreshorizons_logo</string>
+    <string name="title_activity_edit_to_do">EditToDo</string>
+    <string name="title_activity_to_do_edit">ToDoEdit</string>
+    <string name="assigned_to">Assigned to %1$s %2$s</string>
+    <string name="time_estimated_hours">Time estimated %1$d hours</string>
+    <string name="time_remaining_hours">Time remaining %1$.2f hours</string>
+    <string name="analysis_done">Analysis done?</string>
+    <string name="development_done">Development done?</string>
+    <string name="review_testing_done"><![CDATA[Review & testing done?]]></string>
+    <string name="acceptance_done">Acceptance done?</string>
+    <string name="add_edit_todo">Add/edit ToDo</string>
+    <string name="title">title?</string>
+    <string name="description">description?</string>
+    <string name="select_user">assignet to? (select user)</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="title_activity_list_to_dos">ListToDosActivity</string>
+</resources>
