@@ -1,6 +1,5 @@
 package com.neocorehorizons.bemihaildragosvelicutodoproject.ui.screens
 
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,17 +16,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.viewmodel.compose.viewModel
+import be.hostens.mytodoapp.utils.ToDoImage
 import com.neocorehorizons.bemihaildragosvelicutodoproject.data.MyConfiguration
 import com.neocorehorizons.bemihaildragosvelicutodoproject.data.TodoUiState
 import com.neocorehorizons.bemihaildragosvelicutodoproject.model.User
-import com.neocorehorizons.bemihaildragosvelicutodoproject.util.MockupUser
-import androidx.lifecycle.viewmodel.compose.viewModel
-import be.hostens.mytodoapp.utils.ToDoImage
 import com.neocorehorizons.bemihaildragosvelicutodoproject.ui.theme.TealButtonColor
-
+import com.neocorehorizons.bemihaildragosvelicutodoproject.util.MockupUser
 
 @Composable
 fun AddEditToDoScreen(
+    onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AddEditToDoViewModel = viewModel()
 ) {
@@ -47,7 +46,6 @@ fun AddEditToDoScreen(
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-
             ) {
                 ToDoImage(
                     modifier = Modifier
@@ -74,10 +72,9 @@ fun AddEditToDoScreen(
                     modifier = Modifier.padding(end = 8.dp),
                     fontSize = 20.sp,
                     style = MaterialTheme.typography.titleMedium
-
                 )
                 Text(
-                    text = "NEW",
+                    text = uiState.status,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
@@ -133,7 +130,7 @@ fun AddEditToDoScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         // Assigned User Section
-        Text("Select assigned user.")
+        Text("Select assigned user")
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -220,7 +217,7 @@ fun AddEditToDoScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
-                onClick = { /* Handle Cancel */ },
+                onClick = { onNavigateBack() },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = TealButtonColor
@@ -229,7 +226,10 @@ fun AddEditToDoScreen(
                 Text("Cancel")
             }
             Button(
-                onClick = { /* Handle Save */ },
+                onClick = {
+                    viewModel.saveTodo()
+                    onNavigateBack()
+                },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = TealButtonColor
@@ -267,7 +267,6 @@ fun UserSelectionDialog(
     onUserSelected: (User) -> Unit
 ) {
     val users = MockupUser.getUsers()
-    val TealButtonColor = Color(0xFF00838F)
 
     AlertDialog(
         onDismissRequest = onDismiss,
